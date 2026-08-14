@@ -25,9 +25,18 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
 
           # Options
-          user: Uddoo
+          user: ${{ github.repository_owner }}
           template: classic
           base: header, activity, community, repositories, metadata
           config_timezone: Asia/Hong_Kong
+          extras_css: |
+            .items-wrapper > section:first-child > h1.field > span {
+              font-size: 0;
+            }
+
+            .items-wrapper > section:first-child > h1.field > span::after {
+              content: "${{ github.repository_owner }}";
+              font-size: 20px;
+            }
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
